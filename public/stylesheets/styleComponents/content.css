@@ -4,16 +4,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3px;
-    background: crimson;
+    background: url(https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
   }
   
   :where(.left, .center, .right) {
-    background: navajowhite;
+    background: url(https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
     transition: 300ms;
   }
   
   :where(.left, .center, .right):hover {
-    background: crimson;
+    background: url(https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80);
   }
   
   #grid:has(.left:hover) {
