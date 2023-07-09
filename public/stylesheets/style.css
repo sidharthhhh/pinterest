@@ -1,4 +1,6 @@
 @import url("styleComponents/nav.css");
+@import url("styleComponents/hero.css");
+@import url("styleComponents/content.css");
 *{
   margin: 0;
   padding: 0;
