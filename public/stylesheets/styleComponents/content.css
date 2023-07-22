@@ -26,4 +26,8 @@
   #grid:has(.right:hover) {
     grid-template-columns: 0.5fr 0.5fr 2fr;
   }
-  
+  @media (max-width: 576px) {
+    #grid{
+      height: 45vh;
+    }
+   }
