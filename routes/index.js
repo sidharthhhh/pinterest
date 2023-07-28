@@ -1,13 +1,52 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const User = require('../models/userModel');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Pintrest' });
+// GET home page
+router.get('/', (req, res) => {
+  res.render('index', { title: 'Pinterest' });
 });
-router.get('/signup', function (req, res, next) {
+
+// GET signup page
+router.get('/signup', (req, res) => {
   res.render('signup', { title: 'Signup' });
 });
 
+// POST signup form
+router.post('/signup', async (req, res) => {
+  try {
+    const newUser = new User(req.body);
+    await newUser.save();
+    res.redirect("/signin");
+  } catch (error) {
+    res.status(500).send("Error while signing up: " + error.message);
+  }
+});
+
+// GET signin page
+router.get('/signin', (req, res) => {
+  res.render('signin', { title: 'Signin' });
+});
+
+// POST signin form
+router.post('/signin', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.send(`User not found. <a href="/signup">Sign up</a>`);
+    }
+
+    if (user.password !== password) {
+      return res.send(`Incorrect password. <a href="/signup">Sign up</a>`);
+    }
+
+    res.redirect("/profile");
+  } catch (error) {
+    res.status(500).send("Error while signing in: " + error.message);
+  }
+});
 
 module.exports = router;
