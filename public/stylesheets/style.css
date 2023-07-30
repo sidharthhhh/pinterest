@@ -4,6 +4,7 @@
 @import url("styleComponents/page2.css");
 @import url("styleComponents/page3.css");
 @import url("styleComponents/page4.css");
+@import url("styleComponents/main.css");
 *{
   margin: 0;
   padding: 0;

@@ -15,6 +15,7 @@ router.get('/signup', (req, res) => {
 // POST signup form
 router.post('/signup', async (req, res) => {
   try {
+    // console.log("hello")
     const newUser = new User(req.body);
     await newUser.save();
     res.redirect("/signin");
@@ -23,7 +24,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// GET signin page
+// GET signin page`
 router.get('/signin', (req, res) => {
   res.render('signin', { title: 'Signin' });
 });
@@ -43,7 +44,8 @@ router.post('/signin', async (req, res) => {
       return res.send(`Incorrect password. <a href="/signup">Sign up</a>`);
     }
 
-    res.redirect("/profile");
+    res.render("main");
+    // res.send("hellooooo")
   } catch (error) {
     res.status(500).send("Error while signing in: " + error.message);
   }
