@@ -7,7 +7,9 @@ const userModel = new mongoose.Schema({
     email: String,
 });
 
-userModel.plugin(plm);
+userModel.plugin(plm,{
+    usernameField: 'email'
+});
 const user = mongoose.model("user", userModel);
 
 module.exports = user;

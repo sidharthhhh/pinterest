@@ -6,8 +6,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 router.get('/', (req, res) => {
   res.render('index', { title: 'Pinterest' });
@@ -16,28 +14,6 @@ router.get('/', (req, res) => {
 router.get('/signup', (req, res) => {
   res.render('signup', { title: 'Signup' });
 });
-
-router.post("/signup", async (req, res) => {
-  try {
-    const { username, password, email } = req.body;
-    const newUser = new User({ username, email });
-
-    await User.register(newUser, password);
-    
-    res.redirect("/signin");
-  } catch (error) {
-    res.send(error);
-  }
-});
-
-router.get('/signin', (req, res) => {
-  res.render('signin', { title: 'Signin' });
-});
-
-router.post("/signin", passport.authenticate("local", {
-  failureRedirect: "/signin",
-  successRedirect: "/main",
-}));
 
 router.get("/main", isLoggedIn, async (req, res) => {
   try {
@@ -49,9 +25,34 @@ router.get("/main", isLoggedIn, async (req, res) => {
   }
 });
 
+router.post("/signup", async (req, res) => {
+  try {
+    const { username, password, email } = req.body;
+    const newUser = new User({ username, email });
+
+    await User.register(newUser, password);
+
+    res.redirect("/signin");
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.get('/signin', (req, res) => {
+  res.render('signin', { title: 'Signin' });
+});
+
+
+router.post('/signin', passport.authenticate("local", {
+  successRedirect: '/main',
+  failureRedirect: '/signin'
+}), (req, res, next) => { });
+
+
 router.get("/signout", isLoggedIn, (req, res) => {
-  req.logout();
-  res.redirect("/signin");
+  req.logout(() => {
+    res.redirect("/signin");
+  });
 });
 
 function isLoggedIn(req, res, next) {
