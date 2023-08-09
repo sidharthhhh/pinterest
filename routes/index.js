@@ -8,22 +8,14 @@ const LocalStrategy = require("passport-local");
 passport.use(new LocalStrategy(User.authenticate()));
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Pinterest' });
+  res.render('index', { title: 'Pinterest', user: req.user });
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup', { title: 'Signup' });
+  res.render('signup', { title: 'Signup', user : req.user });
 });
 
-router.get("/main", isLoggedIn, async (req, res) => {
-  try {
-    console.log(req.user);
-    const users = await User.find();
-    res.render("main", { title: "Main", users, user: req.user });
-  } catch (error) {
-    res.send(error);
-  }
-});
+
 
 router.post("/signup", async (req, res) => {
   try {
@@ -39,7 +31,7 @@ router.post("/signup", async (req, res) => {
 });
 
 router.get('/signin', (req, res) => {
-  res.render('signin', { title: 'Signin' });
+  res.render('signin', { title: 'Signin', user : req.user });
 });
 
 
@@ -61,5 +53,23 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect("/signin");
 }
+
+
+router.get("/main", isLoggedIn, async (req, res) => {
+  try {
+    const users = await User.find();
+    
+    // Define the 'posts' array here
+    const posts = [
+      { image: 'https://images.unsplash.com/photo-1625797226467-a87561e3d77f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80', caption: 'Beautiful scenery' },
+      { image: 'https://images.unsplash.com/photo-1625797226467-a87561e3d77f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80', caption: 'Delicious food' },
+      // Add more post objects here
+    ];
+    
+    res.render("main", { title: "Main", users, user: req.user, posts }); // Pass 'posts' to the template
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 module.exports = router;
