@@ -12,11 +12,13 @@
     cursor: pointer;
     padding: 1%;
 }
+.navbar>li>img{
+    border-radius: 50%;
+}
 
 .navbar > li:nth-child(2){
     font-weight: 600;
 
-    
 }
 .navbar > li:nth-child(3){
     font-weight: 600;       
@@ -54,7 +56,6 @@
 
 .notification i{
     font-size: 20px;
-    
     color: gray;
     margin-top: 5px;
 
@@ -66,6 +67,7 @@
 
 .profile img{
     object-fit: cover;
+   
 
     border-radius: 50%;
 }
