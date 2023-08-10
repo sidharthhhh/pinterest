@@ -6,5 +6,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:3000"
-    working_dir: /home/app/
-    command: ["node", "app"]
+    depends_on:
+      - mongo-db
+    environment:
+      - MONGO_URL=mongodb+srv://pinterest:pinterest@cluster0.yzkb1jo.mongodb.net/?retryWrites=true&w=majority
+      # ...other environment variables
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

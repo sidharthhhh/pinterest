@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://pinterest:pinterest@cluster0.yzkb1jo.mongodb.net/?retryWrites=true&w=majority")
-    .then(() => console.log("db connected!!!"))
-    .catch((err) => console.log(err));
+const mongoUrl = process.env.MONGO_URL; // Get the MongoDB URL from environment variable
 
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
+  });
