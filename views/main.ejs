@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <%- include("./components/nav")%>
+     <div class="navbar">
+        <li><img src="logo.png" alt="logo" width="30" height="30"></li>
+        <li>Home</li>
+        <li>Today</li>
+        <li class="search"><input type="search" placeholder="Search"></li>
+        <li class="notification"><i class="fas fa-bell"></i></li>
+        <li><i class="far fa-comment-dots"></i></li>
+        <li class="profile"><img src="" alt="profile" width="30" height="30"></li>
+    </div>
+
     
     <div class="main">
         <% posts.forEach(function(post){ %>

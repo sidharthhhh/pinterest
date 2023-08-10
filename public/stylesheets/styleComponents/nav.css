@@ -33,6 +33,7 @@ nav{
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    margin-top: 1.07rem;
 }
 .nav-item ul li{
     list-style: none;
