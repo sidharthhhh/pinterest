@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const mongoUrl = process.env.MONGO_URL; // Get the MongoDB URL from environment variable
+require('dotenv').config();
+const mongoUrl = process.env.MONGODB_URL;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
