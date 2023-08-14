@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const { sendmail } = require("../utils/mail");
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -130,6 +131,35 @@ router.post("/get-email", async function (req, res, next) {
       res.send(error);
   }
 });
+
+router.get("/change-password/:id", function (req, res, next) {
+  res.render("changepassword", {
+      title: "Change Password",
+      id: req.params.id,
+      user: null,
+  });
+});
+
+router.post("/change-password/:id", async function (req, res, next) {
+  try {
+    const user = await User.findById(req.params.id);
+    if (user.passwordResetToken === 1) {
+      await user.setPassword(req.body.password);
+      user.passwordResetToken = 0;
+    } else {
+      return res.send(
+        `link expired try again <a href="/get-email">Forget Password</a>`
+      );
+    }
+    await user.save();
+    console.log("Password changed successfully");
+    res.redirect("/signin"); // Ensure this line is executed
+  } catch (error) {
+    console.error("Error changing password:", error);
+    res.send(error);
+  }
+});
+
 
 
 
