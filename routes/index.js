@@ -47,12 +47,6 @@ router.get("/signout", isLoggedIn, (req, res) => {
   });
 });
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/signin");
-}
 
 
 router.get("/main", isLoggedIn, async (req, res) => {
@@ -97,5 +91,54 @@ router.get("/main", isLoggedIn, async (req, res) => {
     res.send(error);
   }
 });
+
+router.get("/reset/:id", isLoggedIn, async function (req, res, next) {
+  res.render("reset", {
+      title: "Reset Password",
+      id: req.params.id,
+      user: req.user,
+  });
+});
+
+router.post("/reset/:id", isLoggedIn, async function (req, res, next) {
+  try {
+      await req.user.changePassword(req.body.oldpassword, req.body.password);
+      await req.user.save();
+      res.redirect("/main");
+  } catch (error) {
+      res.send(error);
+  }
+});
+
+router.get("/get-email", function (req, res, next) {
+  res.render("getemail", { title: "Forget-Password", user: req.user });
+});
+
+
+router.post("/get-email", async function (req, res, next) {
+  try {
+      const user = await User.findOne({ email: req.body.email });
+
+      if (user === null) {
+          return res.send(
+              `User not found. <a href="/get-email">Forget Password</a>`
+          );
+      }
+      sendmail(req, res, user);
+      // res.send("hello")
+  } catch (error) {
+      res.send(error);
+  }
+});
+
+
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/signin");
+}
+
 
 module.exports = router;

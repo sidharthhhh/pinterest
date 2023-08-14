@@ -14,6 +14,7 @@
                 <button class="btn1"><a href="/signin">Sign in</a></button>
                 <button class="btn2"><a href="/signup">Sign up</a></button>
               <%} else { %>
+                <button class="btn2"><a href="/reset/<%= user._id%>">reset</a></button>
                 <button class="btn2"><a href="/signout">Signout</a></button>
             <% } %>
 
