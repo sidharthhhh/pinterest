@@ -72,6 +72,10 @@ button{
 .btn2:hover{
     background-color: rgb(249, 191, 191);
 }
+.profile-img>a>img{
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 600px) {
   nav{

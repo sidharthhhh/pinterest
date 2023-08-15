@@ -160,7 +160,13 @@ router.post("/change-password/:id", async function (req, res, next) {
   }
 });
 
+router.get('/profile', (req, res) => {
+  res.render('profile', { title: 'Signup', user : req.user });
+});
 
+router.get('/editprofile', (req, res) => {
+  res.render('editprofile', { title: 'Signup', user : req.user });
+});
 
 
 function isLoggedIn(req, res, next) {

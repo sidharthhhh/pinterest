@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .profile-section {
+            text-align: center;
+            padding: 40px;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+        }
+        .profile-name {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+        .profile-username {
+            color: #777;
+            margin-top: 5px;
+        }
+        .profile-buttons {
+            margin-top: 20px;
+        }
+        .profile-buttons button {
+            margin-right: 10px;
+        }
+        .section-header {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+        .sections {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .created-section,
+        .saved-section {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-section">
+        <img src="path_to_your_image.jpg" alt="Profile Image" class="profile-image">
+        <h1 class="profile-name">John Doe</h1>
+        <p class="profile-username">@johndoe</p>
+        <div class="profile-buttons">
+            <button class="btn btn-primary">Share</button>
+            <button class="btn btn-secondary"><a href="/editprofile">Edit Profile</a></button>
+        </div>
+    </div>
+
+    <div class="sections">
+        <div class="created-section">
+            <div class="section-header">Created Pins</div>
+            <!-- Your created pins section content here -->
+        </div>
+        <div class="saved-section">
+            <div class="section-header">Saved Pins</div>
+            <!-- Your saved pins section content here -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
