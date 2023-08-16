@@ -53,22 +53,23 @@
 
 <div class="container">
     <div class="profile-section">
-        <img src="https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Profile Image" class="profile-image">
-        <h1 class="profile-name">John Doe</h1>
-        <p class="profile-username">@johndoe</p>
+        <img src="<%= user.avatar %>" alt="Profile Image" class="profile-image">
+        <h1 class="profile-name"><%= user.username %></h1>
+        <p class="profile-username"><%= user.email %></p>
+        
         <div class="profile-buttons">
             <button class="btn btn-primary">Share</button>
-            <button class="btn btn-secondary"><a href="/editprofile">Edit Profile</a></button>
+            <button class="btn btn-secondary"><a href="/editprofile/<%= user._id %>">Edit Profile</a></button>
         </div>
     </div>
 
     <div class="sections">
         <div class="created-section">
-            <div class="section-header">Created Pins</div>
+            <div class="section-header">Created</div>
             <!-- Your created pins section content here -->
         </div>
         <div class="saved-section">
-            <div class="section-header">Saved Pins</div>
+            <div class="section-header">Saved</div>
             <!-- Your saved pins section content here -->
         </div>
     </div>

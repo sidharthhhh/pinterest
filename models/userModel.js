@@ -9,6 +9,10 @@ const userModel = new mongoose.Schema({
     username: String,
     password: String,
     email: String,
+    avatar: {
+        type: String,
+        default: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    },
 });
 
 userModel.plugin(plm,{

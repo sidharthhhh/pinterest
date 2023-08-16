@@ -160,12 +160,19 @@ router.post("/change-password/:id", async function (req, res, next) {
   }
 });
 
-router.get('/profile', (req, res) => {
-  res.render('profile', { title: 'Signup', user : req.user });
+router.get('/profile/:id', async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.render('profile', { title: 'Signup', user : user });
 });
 
-router.get('/editprofile', (req, res) => {
-  res.render('editprofile', { title: 'Signup', user : req.user });
+router.get('/editprofile/:id', async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.render('editprofile', { title: 'Signup', user : user });
+});
+
+router.post('/editprofile/:id', async (req, res) => {
+  const user = await User.findByIdAndUpdate(req.params.id,{username: req.body.username,email: req.body.email,avatar: req.body.avatar});
+  res.redirect("/main");
 });
 
 

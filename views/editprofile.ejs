@@ -15,33 +15,21 @@
                 </div>
                 <div class="text-center mb-2">
                     <a href="#" class="profile-image">
-                        <img src="https://images.unsplash.com/photo-1682685797507-d44d838b0ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Profile Image" class="img-fluid rounded-circle" width="50">
+                        <img src="<%= user.avatar %>" alt="Profile Image" class="img-fluid rounded-circle" width="50">
                     </a>
                 </div>
-                <form>
+                <form action="/editprofile/<%= user._id%>" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        <input name="username" value="<%= user.username %>" type="text" class="form-control" id="name" placeholder="Your Name">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                        <input name="email" value="<%= user.email %>" type="email" class="form-control" id="email" placeholder="you@example.com">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="about" class="form-label">About Us</label>
-                        <textarea class="form-control" id="about" rows="4" placeholder="Tell us about yourself"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="website" class="form-label">Website</label>
-                        <input type="url" class="form-control" id="website" placeholder="https://www.example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="YourUsername">
+                        <label for="Image" class="form-label">Image</label>
+                        <input name="avatar" value="<%= user.avatar %>" class="form-control mb-3" type="text" name="avatar" />
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
